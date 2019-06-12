@@ -1,5 +1,5 @@
-# loopback3-tip-tricks
-### Tips and tricks for loopback 3  projects
+# loopback-3-tips-tricks
+## Tips, tricks and common problems solutions for Loopback 3 projects
 
 * Override defaults methods of a model:
 
