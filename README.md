@@ -5,9 +5,10 @@ Override defaults methods of a model:
 
 Example of a controller file:
 
-<script src="https://gist.github.com/pookdeveloper/37e249aa0195fd27b63355c515a388f8.js"></script>
+{% gist 37e249aa0195fd27b63355c515a388f8 %}
 
 
 
+{"gitdown": "gist", "id": "37e249aa0195fd27b63355c515a388f8"}
 
 
