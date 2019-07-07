@@ -31,3 +31,12 @@ module.exports = function (Examplemodel) {
 };
 ````
 
+*  Validating model data only in create (this.isNewRecord() )
+````javascript
+Model.validate('end_date', fecha_fin, { message: 'The end_date can not be less than the start_date' });
+    function end_date(err) {
+        if (this.isNewRecord() && this.end_date && this.end_date < this.start_date) {
+            err();
+        }
+};
+````
