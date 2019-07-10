@@ -41,3 +41,27 @@ Model.validate('end_date', fecha_fin, { message: 'The end_date can not be less t
         }
 };
 ````
+
+
+*  Use await in datasource connector execute (Two options)
+> One option
+````
+// usage
+const result = await executeAsync(dataSource, sqlStatement, params, options);
+
+// impletation of function to wrap it
+function executeAsync(dataSource, sqlStatement, params, options) {
+  return new Promise((resolve, reject) => {
+    dataSource.connector.execute(sqlStatement, params, options, (err, result) => {
+      if (err) reject(err);
+      else resolve(result);
+    });
+  });
+}
+````
+
+> Two option [documentation promisify](https://nodejs.org/dist/latest-v8.x/docs/api/util.html#util_util_promisify_original)
+````
+const { promisify } = require('util')
+await promisify(YOUR_MODEL.connection.query).bind(YOUR_MODEL.connection)(sql_stmt, params)
+````
