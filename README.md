@@ -63,5 +63,5 @@ function executeAsync(dataSource, sqlStatement, params, options) {
 > Two option [documentation promisify](https://nodejs.org/dist/latest-v8.x/docs/api/util.html#util_util_promisify_original)
 ````
 const { promisify } = require('util')
-await promisify(YOUR_MODEL.connection.query).bind(YOUR_MODEL.connection)(sql_stmt, params)
+await promisify(mysqlDs.connector.execute).bind(mysqlDs.connector)(sql_stmt, params)
 ````
