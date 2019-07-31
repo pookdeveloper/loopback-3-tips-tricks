@@ -18,6 +18,7 @@ module.exports = function (MyModel) {
     async function cementerios_validacion(err, done) {
         //
         // Use your custom variable for explicit validation is (validation_manual) to check if is called explicit 
+        // if(this.validation_manual) .....
         /*
         YOUR CODE...
         */
