@@ -1,6 +1,67 @@
 # loopback-3-tips-tricks
 ## Tips, tricks and common problems solutions for Loopback 3 projects
 
+* Validate model with isValid without in upsert:
+
+````javascript
+'use strict';
+
+module.exports = function (MyModel) {
+
+    var app = require('../../server/server');
+
+
+    // Disable method update
+    MyModel.disableRemoteMethodByName("replaceById", true);
+
+    MyModel.validateAsync('cementerios', cementerios_validacion, {}); // { message: 'No se ha encontrado el patio' }
+    async function cementerios_validacion(err, done) {
+        //
+        // Use your custom variable for explicit validation is (validation_manual) to check if is called explicit 
+        /*
+        YOUR CODE...
+        */
+    }
+
+    MyModel.modificar = function (req, res, options, id, data, cb) {
+        // Use isvalid
+        const mymodel_data = new app.models.MyModel(data);
+        mymodel_data.validation_manual = true;
+
+        myModel.isValid(function (valid) {
+            if (!valid) {
+                mymodel_data.errors // hash of errors {attr: [errmessage, errmessage, ...], attr: ...}
+            }
+        })
+        /*
+        YOUR CODE...
+        */
+    };
+
+    // remoteMethod
+    MyModel.remoteMethod(
+        'modificar', {
+            accepts: [
+                { arg: 'req', type: 'object', 'http': { source: 'req' } },
+                { arg: 'res', type: 'object', 'http': { source: 'res' } },
+                { arg: "options", type: "object", http: "optionsFromRequest" },
+                { arg: 'id', type: 'number', required: true },
+                { arg: 'data', type: "object", 'http': { source: 'body' } }
+            ],
+            http: {
+                path: '/modificar/:id',
+                verb: 'put'
+            },
+            returns: {
+                arg: 'cementerio',
+                type: 'object', root: true
+            }
+        }
+    );
+};
+````
+
+
 * Override defaults methods of a model:
 
 Example of a controller file: [Link for gist](https://gist.github.com/pookdeveloper/37e249aa0195fd27b63355c515a388f8)
