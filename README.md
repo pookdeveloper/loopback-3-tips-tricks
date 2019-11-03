@@ -127,3 +127,9 @@ function executeAsync(dataSource, sqlStatement, params, options) {
 const { promisify } = require('util')
 await promisify(mysqlDs.connector.execute).bind(mysqlDs.connector)(sql_stmt, params)
 ````
+
+
+*  Get properties definition of model
+````
+app.models.<YOUR MODEL>().toObject()
+````
