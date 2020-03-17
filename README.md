@@ -133,3 +133,20 @@ await promisify(mysqlDs.connector.execute).bind(mysqlDs.connector)(sql_stmt, par
 ````
 app.models.<YOUR MODEL>().toObject()
 ````
+
+* Async/await remote method
+Dont'use `cb()` function. Just return the value directly.
+If you need to send an error don't return in, throw it.
+````javascript
+Model.myRemoteMethod = async function(param1,param2,...){
+    try{
+        let result = // ....
+        return result
+    } catch(err){
+        throw err 
+    }
+}
+````
+
+
+
