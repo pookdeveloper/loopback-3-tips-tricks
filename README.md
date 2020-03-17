@@ -1,7 +1,7 @@
 # loopback-3-tips-tricks
 ## Tips, tricks and common problems solutions for Loopback 3 projects
 
-* Validate model with isValid without in upsert:
+#### Validate model with isValid without in upsert:
 
 ````javascript
 'use strict';
@@ -63,7 +63,7 @@ module.exports = function (MyModel) {
 ````
 
 
-* Override defaults methods of a model:
+#### Override defaults methods of a model:
 
 Example of a controller file: [Link for gist](https://gist.github.com/pookdeveloper/37e249aa0195fd27b63355c515a388f8)
 
@@ -93,7 +93,7 @@ module.exports = function (Examplemodel) {
 };
 ````
 
-*  Validating model data only in create
+####  Validating model data only in create
 ````javascript
 // Use the method this.isNewRecord() to check that
 Model.validate('end_date', fecha_fin, { message: 'The end_date can not be less than the start_date' });
@@ -105,7 +105,7 @@ Model.validate('end_date', fecha_fin, { message: 'The end_date can not be less t
 ````
 
 
-*  Use await in datasource connector execute (Two options)
+####  Use await in datasource connector execute (Two options)
 > One option
 ````
 // usage
@@ -129,12 +129,12 @@ await promisify(mysqlDs.connector.execute).bind(mysqlDs.connector)(sql_stmt, par
 ````
 
 
-*  Get properties definition of model
+####  Get properties definition of model
 ````
 app.models.<YOUR MODEL>().toObject()
 ````
 
-* Async/await remote method
+#### Async/await remote method
 Dont'use `cb()` function. Just return the value directly.
 If you need to send an error don't return in, throw it.
 ````javascript
